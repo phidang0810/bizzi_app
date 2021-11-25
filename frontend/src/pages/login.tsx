@@ -60,7 +60,7 @@ export const LoginPage: React.FC<Props> = () => {
 
     function onFinish(values: any) {
         try {
-            login({
+            const response = await login({
                 variables: {
                     email: values.email,
                     password: values.password
@@ -76,8 +76,13 @@ export const LoginPage: React.FC<Props> = () => {
                             me: data.login.user
                         }
                     });
+
                 }
             });
+            if (response && response.data) {
+                setAccessToken(response.data.login.accessToken as string);
+                return history.push(urlRedirect !== "" ? urlRedirect : "/manage-post");
+            }
         } catch {
             message.error("Email or password is incorrect.");
         }
