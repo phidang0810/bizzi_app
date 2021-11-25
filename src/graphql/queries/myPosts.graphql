@@ -1,0 +1,17 @@
+query myPosts($searchPostsInput: SearchPostsInput!) {
+	myPosts(searchPostsInput: $searchPostsInput) {
+    total,
+    page,
+    length,
+    rows {      
+      id,     
+      key, 
+      title,
+      slug,
+      photo,
+      status,
+      createdAt,
+      userId
+    }
+  }
+}

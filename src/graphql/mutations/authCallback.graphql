@@ -1,0 +1,10 @@
+mutation AuthCallback($userId: String!, $social: String!, $token: String!) {
+    loginSocialCallback (userId: $userId, social: $social, token: $token) {
+    accessToken,
+    user {
+      id,
+      name,
+      email
+    }
+  }
+}
