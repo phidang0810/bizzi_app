@@ -15,11 +15,8 @@ export const checkAuth: MiddlewareFn<Context> = ({context}, next): any => {
         const token = authorization.split(" ")[1];
         const payload = verify(token, process.env.ACCESS_TOKEN_SECRET!)
         context.payload = payload as any;
-    } catch(error: any) {        
-        if (error instanceof SyntaxError) {
-            throw new ApolloError(error.message, ERROR_CODE.SERVER_ERROR);
-        }
-        throw new ApolloError(error.message, ERROR_CODE.UNAUTHENTICATED)
+    } catch(error) {               
+        throw new ApolloError('Not authenticated', ERROR_CODE.UNAUTHENTICATED)
     }
     return next();
 }
