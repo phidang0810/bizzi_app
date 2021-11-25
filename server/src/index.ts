@@ -65,7 +65,7 @@ const main = async () => {
 
     module.exports = app;
     const POST = process.env.PORT || 4000;
-    app.listen(4000, () => console.log(`Server started on port ${POST}. GraphQL server started on localhost:${POST}${apolloServer.graphqlPath}`));
+    app.listen(POST, () => console.log(`Server started on port ${POST}. GraphQL server started on localhost:${POST}${apolloServer.graphqlPath}`));
 };
 
 main().catch(error => console.log(error));
