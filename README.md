@@ -35,3 +35,9 @@ To log in facebook in localhost you need to change FB_ID(frontent/.env) to our a
 Use user@gmail.com / 123456 for default database in env.example .
 If you use your database, you need to run register mutation in GraphQL.
 We don't have register page now. Sorry for the inconvenience
+
+## Unit Test
+```bash
+cd server
+yarn test
+```
