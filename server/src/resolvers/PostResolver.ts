@@ -11,7 +11,7 @@ import { ApolloError } from "apollo-server-core";
 import { Comment } from "../entities/Comment";
 import { User } from "../entities/User";
 import { getRepository } from "typeorm";
-import { SearchPostsInput } from "../types/searchPostsInput";
+import { SearchPostsInput } from "../types/SearchPostsInput";
 import {createPostService, updatePostService, deletePostService} from "../services/PostService"
 @Resolver(_of => Post)
 export class PostResolver { 
