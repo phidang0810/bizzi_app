@@ -58,7 +58,7 @@ export const LoginPage: React.FC<Props> = () => {
         }
     }
 
-    function onFinish(values: any) {
+    async function onFinish(values: any) {
         try {
             const response = await login({
                 variables: {
