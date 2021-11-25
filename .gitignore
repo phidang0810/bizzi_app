@@ -1,0 +1,12 @@
+server/.env
+server/dist
+server/node_modules
+server/yarn.lock
+server/package-lock.json
+server/.serverless
+frontend/dist
+frontend/node_modules
+frontend/.env
+frontend/yarn.lock
+frontend/package-lock.json
+frontend/.serverless

@@ -6,6 +6,7 @@ provider:
   region: ap-southeast-1
   environment:
     NODE_ENV: dev
+    DB_HOST: bizzi_test
     DB_NAME: bizzi_test
     DB_USERNAME: admin
     DB_PASSWORD: YHCQ4n7PAvvuyvk3DWDc

@@ -21,6 +21,7 @@ var routes = require("./routes");
 const main = async () => {
     const connection = await createConnection({
         type: "mysql",
+        host: process.env.DB_HOST,
         database: process.env.DB_NAME,
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
