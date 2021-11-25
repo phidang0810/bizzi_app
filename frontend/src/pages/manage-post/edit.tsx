@@ -18,7 +18,8 @@ export const ManagePostDetailPage: React.FC<Props> = () => {
     const [loading, setLoading] = useState(false);
     const [updatePost] = useUpdatePostMutation();
     const {data, loading: initLoading} = usePostQuery({
-		variables: { id }
+		variables: { id },
+        fetchPolicy: "network-only"
 	});
 
     const {data: meData, loading: loadingMe} = useMeQuery();

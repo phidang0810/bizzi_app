@@ -65,7 +65,7 @@ function Hit(props: any) {
     return (
         <div>
             <div className="hit-name">
-                <Link to={`/${props.hit.slug}/${props.hit.objectId}`}><Highlight attribute="title" hit={props.hit} /></Link>
+                <Link to={`/${props.hit.slug}/${props.hit.objectID}`}><Highlight attribute="title" hit={props.hit} /></Link>
             </div>
             <div className="hit-description">
                 <Highlight attribute="text" hit={props.hit} />

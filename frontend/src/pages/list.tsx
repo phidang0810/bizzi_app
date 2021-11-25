@@ -55,7 +55,7 @@ export const PostListPage: React.FC<Props> = () => {
                             <Row gutter={[16,16]}>
                             {                    
                                 data?.posts?.rows.map((item) => 
-                                    <Col xs={24} sm={12} md={8} lg={4} key={item.id}>
+                                    <Col xs={24} sm={12} md={8} lg={6} key={item.id}>
                                         <Card
                                             hoverable
                                             className='w-100'                                
