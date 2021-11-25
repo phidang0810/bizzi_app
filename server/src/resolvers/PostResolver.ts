@@ -57,24 +57,17 @@ export class PostResolver {
         @Ctx() { payload }: Context
     ): Promise<Post> {
         const { userId } = payload;
-        console.log('input.id)=', input.userId)
-        console.log('userId=', userId)
-        if (userId !== input.id) {
-            throw new ApolloError("Access denied!", ERROR_CODE.UNAUTHORIZATION);
-        }
-        return updatePostService(input)
+        
+        return updatePostService(input, userId)
     }
 
     @Mutation(_return => Boolean)
     @UseMiddleware(checkAuth)
     async deletePost(@Arg("id", _type => ID) id: number, @Ctx() { payload }: Context): Promise<boolean> {
-        const { userId } = payload;       
+        const { userId } = payload;     
+        
 
-        if (id !== userId) {
-            throw new ApolloError("Access denied!", ERROR_CODE.UNAUTHORIZATION);
-        }
-
-        return deletePostService(id);
+        return deletePostService(id, userId);
     }
 
 

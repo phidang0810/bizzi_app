@@ -41,9 +41,13 @@ export const createPostService = async function ({title, text, status, userId}: 
     }
 }
 
-export const updatePostService = async function ({title, text, status, id}: UpdatePostInput) {    
-    const existingPost = await Post.findOne(id);
+export const updatePostService = async function ({title, text, status, id}: UpdatePostInput, userId: number) {    
+    let existingPost = await Post.findOne(id);
     if (!existingPost) throw new ApolloError("Post not found", ERROR_CODE.NOT_FOUND);        
+
+    if (userId != existingPost.userId) {
+        throw new ApolloError("Access denied!", ERROR_CODE.UNAUTHORIZATION);
+    }
 
     const slug = convertToSlug(title);
     existingPost.title = title;
@@ -51,7 +55,7 @@ export const updatePostService = async function ({title, text, status, id}: Upda
     existingPost.text = text;
     existingPost.status = status;     
     try {
-        await existingPost.save();
+        existingPost = await existingPost.save();
         await agoliaSearch.saveObjects([{
             title,
             text,
@@ -60,13 +64,17 @@ export const updatePostService = async function ({title, text, status, id}: Upda
             objectID: existingPost.id
         }])
     } catch (error) {
-        new ApolloError("Error", ERROR_CODE.SERVER_ERROR);
+        throw new ApolloError("Error", ERROR_CODE.SERVER_ERROR);
     }
     return existingPost;
 }
-export const deletePostService = async function (id: number) {
+export const deletePostService = async function (id: number, userId: number) {
     const existingPost = await Post.findOne(id);
     if (!existingPost) return false;
+
+    if (userId != existingPost.userId) {
+        throw new ApolloError("Access denied!", ERROR_CODE.UNAUTHORIZATION);
+    }
 
     await Comment.delete({ postId: id });
     await Post.delete({ id });
