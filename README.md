@@ -12,6 +12,7 @@ The following must be done before following this guide:
 ```bash
 cd server
 yarn install
+cp .env.example .env
 yarn start-dev
 ```
 
@@ -20,11 +21,12 @@ yarn start-dev
 ```bash
 cd frontend
 yarn install
+cp .env.example .env
 yarn start
 ```
 
 ## Environment Variables
-Rename .env.example to .env
+Stored in .env
 
 ## Log in using Facebook
 To log in facebook in localhost you need change to change FB_ID(frontent/.env) to our application id
