@@ -8,7 +8,7 @@ import { Comment } from "./entities/Comment";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { AuthResolver } from "./resolvers/authResolver";
+import { AuthResolver } from "./resolvers/AuthResolver";
 import { PostResolver } from "./resolvers/PostResolver";
 import { UserResolver } from "./resolvers/UserResolver";
 import cookieParser from "cookie-parser";
