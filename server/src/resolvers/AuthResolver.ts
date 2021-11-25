@@ -133,26 +133,28 @@ export class AuthResolver {
         @Arg("email") email: string,
         @Arg("password") password: string,
         @Ctx() { res }: Context
-      
+
     ): Promise<LoginResponse> {
-      const user = await User.findOne({ where: { email } });
-  
-      if (!user) {
-        throw new Error("could not find user");
-      }
-  
-      const valid = await compare(password, user.password);
-  
-      if (!valid) {
-        throw new Error("bad password");
-      }  
-      
-      sendRefreshToken(res, createRefreshToken(user));
-  
-      return {
-        accessToken: createAccessToken(user),
-        user
-      };
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            throw new Error("could not find user");
+        }
+
+        const valid = await compare(password, user.password);
+
+        if (!valid) {
+            throw new Error("bad password");
+        }
+
+        if (res) {
+            sendRefreshToken(res, createRefreshToken(user));
+        }
+
+        return {
+            accessToken: createAccessToken(user),
+            user
+        };
     }
 
     @Mutation(_return => Boolean)
