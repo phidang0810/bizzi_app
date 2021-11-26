@@ -27,7 +27,6 @@ const main = async () => {
         password: process.env.DB_PASSWORD,
         logging: true,
         synchronize: process.env.ENV == 'production' ? false : true,
-        migrations: ["./src/migrations/*.ts"],
         entities: [Post, User, Comment]
     });
     const app = express();
